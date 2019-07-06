@@ -5,4 +5,7 @@
     <string name="action_new">New Note</string>
     <string name="dummy">dummy</string>
     <string name="hint_write_here">Write here...</string>
+    <string name="label_enter_note_name">Note name</string>
+    <string name="hint_enter_note_name">Enter note name..</string>
+    <string name="message_please_enter_valid_name">Please enter valid name</string>
 </resources>

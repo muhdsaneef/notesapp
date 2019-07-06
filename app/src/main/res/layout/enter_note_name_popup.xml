@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+                android:paddingTop="@dimen/dimen20">
+    <EditText
+            android:id="@+id/edt_note_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLength="50"
+            android:layout_marginStart="@dimen/dimen10"
+            android:layout_marginEnd="@dimen/dimen10"
+            android:hint="@string/hint_enter_note_name"
+            android:singleLine="true" />
+
+</LinearLayout>

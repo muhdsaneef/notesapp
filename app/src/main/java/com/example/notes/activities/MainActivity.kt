@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity
 import com.example.notes.R
 import com.example.notes.adapters.NotesAdapter
 import com.example.notes.databinding.ActivityMainBinding
@@ -14,7 +14,11 @@ import com.example.notes.models.Note
 import com.example.notes.viewmodel.NoteViewModel
 
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
+import android.widget.Toast
+import android.content.DialogInterface
+import android.app.AlertDialog
+import android.view.LayoutInflater
+import android.widget.EditText
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: NoteViewModel
     private lateinit var adapter: NotesAdapter
     private var isEditMode = false
+    private var newNoteName :String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +61,8 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(NotesEditActivity.IS_EDIT_MODE, isEditMode)
         if (isEditMode) {
             intent.putExtra(NotesEditActivity.NOTE_ITEM, note)
+        } else {
+            intent.putExtra(NotesEditActivity.NEW_NOTE_NAME, newNoteName)
         }
         startActivityForResult(intent, REQUEST_EDIT_SCREEN)
     }
@@ -89,8 +96,39 @@ class MainActivity : AppCompatActivity() {
     private fun setAddNoteListener() {
         fab.setOnClickListener {
             isEditMode = false
-            showNoteEditScreen(null)
+            showEnterNoteNameDialog()
         }
+    }
+
+    private fun showEnterNoteNameDialog() {
+        val alert = AlertDialog.Builder(this)
+        val alertLayout = LayoutInflater.from(this).inflate(R.layout.enter_note_name_popup, null)
+        val edtNoteName = alertLayout.findViewById<EditText>(R.id.edt_note_name)
+
+        alert.setTitle(null)
+        alert.setView(alertLayout)
+        alert.setCancelable(false)
+        alert.setNegativeButton("Cancel") { dialogInterface: DialogInterface, _: Int ->
+            dialogInterface.dismiss()
+        }
+
+
+        alert.setPositiveButton("Done", null)
+        val dialog = alert.create()
+
+        dialog.setOnShowListener { dialogInterface ->
+            val positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton.setOnClickListener {
+                if (edtNoteName.text.toString().isNotEmpty()) {
+                    newNoteName = edtNoteName.text.toString()
+                    dialogInterface.dismiss()
+                    showNoteEditScreen(null)
+                } else {
+                    Toast.makeText(this, R.string.message_please_enter_valid_name, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+        dialog.show()
     }
 
     companion object {

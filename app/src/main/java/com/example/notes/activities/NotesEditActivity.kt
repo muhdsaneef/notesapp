@@ -6,7 +6,6 @@ import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.util.TypedValue
 import android.view.MenuItem
 import android.widget.Toast
 import com.example.notes.R
@@ -35,18 +34,21 @@ class NotesEditActivity : AppCompatActivity() {
     private fun setDoneButtonListener() {
         binding.imgDone.setOnClickListener {
             if (binding.edtNoteContent.text.toString().isNotEmpty()) {
-                //Update the note object if it is edit mode
-                if (isEditMode) {
-                    note?.setUpdatedContent(System.currentTimeMillis(), binding.edtNoteContent.text.toString())
-                }
-                val resultIntent = Intent()
-                resultIntent.putExtra(NOTE_ITEM, note)
-                setResult(Activity.RESULT_OK, resultIntent)
-                finish()
+                //Update the note content
+                note?.setUpdatedContent(System.currentTimeMillis(), binding.edtNoteContent.text.toString())
+
+                sendResultBackToListingScreen()
             } else {
                 Toast.makeText(this,"Note content cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun sendResultBackToListingScreen() {
+        val resultIntent = Intent()
+        resultIntent.putExtra(NOTE_ITEM, note)
+        setResult(Activity.RESULT_OK, resultIntent)
+        finish()
     }
 
     private fun initToolbar() {
@@ -76,7 +78,8 @@ class NotesEditActivity : AppCompatActivity() {
             }
         } else {
             val noteId = UUID.randomUUID().toString()
-            note = Note(noteId, "", System.currentTimeMillis(), "")
+            val noteName = intent.getStringExtra(NEW_NOTE_NAME)
+            note = Note(noteId, noteName, System.currentTimeMillis(), "")
         }
     }
 
@@ -97,5 +100,6 @@ class NotesEditActivity : AppCompatActivity() {
         private var TAG = NotesEditActivity::class.java.simpleName
         const val IS_EDIT_MODE = "edit mode"
         const val NOTE_ITEM = "note item"
+        const val NEW_NOTE_NAME = "new note name"
     }
 }

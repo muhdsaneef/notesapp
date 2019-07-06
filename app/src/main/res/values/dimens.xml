@@ -6,4 +6,5 @@
     <dimen name="dimen15">15dp</dimen>
     <dimen name="dateTextSize">13sp</dimen>
     <dimen name="labelTextSize">15sp</dimen>
+    <dimen name="dimen20">20dp</dimen>
 </resources>
