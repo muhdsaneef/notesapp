@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="noteObj" type="com.example.notes.models.Note"/>
+
+        <import type="com.example.notes.utils.AppUtils"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/dimen15">
+
+        <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@android:color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:cardElevation="2dp"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="@dimen/dimen5">
+
+            <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+            android:background="@drawable/bg_note_card">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_note_name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Note name"
+                        android:textSize="@dimen/labelTextSize"
+                        android:layout_marginStart="@dimen/dimen15"
+                        android:text="@{noteObj.noteName}"
+                        android:layout_marginTop="@dimen/dimen10"
+                        android:textColor="@color/noteNameColor"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/tv_note_created_date"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginEnd="@dimen/dimen15"
+                        android:layout_marginTop="@dimen/dimen10"
+                        android:textColor="@color/noteCreatedLabelColor"
+                        app:createdAt="@{noteObj.createdAt}"
+                        android:textSize="@dimen/dateTextSize"
+                        tools:text="11-01-2019"/>
+
+                <TextView android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:maxLines="3"
+                          android:ellipsize="end"
+                          android:layout_marginEnd="@dimen/dimen15"
+                          app:layout_constraintStart_toStartOf="@+id/tv_note_name"
+                          app:layout_constraintTop_toBottomOf="@+id/tv_note_name"
+                          android:layout_marginTop="@dimen/dimen15"
+                          app:layout_constraintEnd_toEndOf="parent"
+                          android:text="@{noteObj.noteContent}"
+                          android:lines="3"
+                          android:textColor="@android:color/black"
+                          app:layout_constraintBottom_toBottomOf="parent"
+                          android:layout_marginBottom="@dimen/dimen15"
+                          tools:text="Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cice"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+
+        </android.support.v7.widget.CardView>
+    </android.support.constraint.ConstraintLayout>
+</layout>

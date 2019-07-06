@@ -3,4 +3,8 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="addButtonColor">#2A56C6</color>
+    <color name="titleTextColor">#212121</color>
+    <color name="noteCreatedLabelColor">#7f7f7f</color>
+    <color name="noteNameColor">#2a56c6</color>
 </resources>
