@@ -29,16 +29,20 @@
             android:background="@drawable/bg_note_card">
 
                 <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/tv_note_name"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_note_created_date"
                         tools:text="Note name"
                         android:textSize="@dimen/labelTextSize"
                         android:layout_marginStart="@dimen/dimen15"
+                        android:layout_marginEnd="@dimen/dimen10"
                         android:text="@{noteObj.noteName}"
                         android:layout_marginTop="@dimen/dimen10"
+                        android:ellipsize="end"
+                        android:maxLines="1"
                         android:textColor="@color/noteNameColor"/>
 
                 <TextView
@@ -65,6 +69,8 @@
                           app:layout_constraintEnd_toEndOf="parent"
                           android:text="@{noteObj.noteContent}"
                           android:lines="3"
+                          android:lineSpacingExtra="@dimen/line_spacing"
+                          android:lineSpacingMultiplier="1.3"
                           android:textColor="@android:color/black"
                           app:layout_constraintBottom_toBottomOf="parent"
                           android:layout_marginBottom="@dimen/dimen15"
