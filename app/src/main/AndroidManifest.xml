@@ -11,14 +11,12 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.BaseActivity">
-        </activity>
         <activity
                 android:name=".activities.NotesEditActivity"
                 android:configChanges="orientation|screenSize|keyboard|locale"
                 android:screenOrientation="portrait"
                 android:theme="@style/AppTheme.NoActionBar"
-                android:windowSoftInputMode="adjustPan">
+                android:windowSoftInputMode="adjustResize">
         </activity>
         <activity
                 android:name=".activities.MainActivity"

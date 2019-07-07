@@ -56,7 +56,6 @@
                     android:gravity="start"
                     android:inputType="textMultiLine"
                     android:text="@{noteObj.noteContent}"
-                    android:lines="30"
                     android:background="@null"/>
 
         </ScrollView>
