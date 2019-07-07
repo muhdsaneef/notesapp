@@ -1,24 +1,23 @@
 package com.example.notes.activities
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.DialogInterface
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.EditText
+import android.widget.Toast
 import com.example.notes.R
 import com.example.notes.adapters.NotesAdapter
 import com.example.notes.databinding.ActivityMainBinding
 import com.example.notes.models.Note
-import com.example.notes.viewmodel.NoteViewModel
-
-import kotlinx.android.synthetic.main.activity_main.*
-import android.widget.Toast
-import android.content.DialogInterface
-import android.app.AlertDialog
-import android.view.LayoutInflater
-import android.widget.EditText
 import com.example.notes.utils.AppUtils
+import com.example.notes.viewmodel.NoteViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
