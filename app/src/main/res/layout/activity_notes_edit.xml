@@ -35,22 +35,33 @@
         </android.support.v7.widget.Toolbar>
 
 
-        <EditText
-                android:id="@+id/edt_note_content"
+        <ScrollView
+                android:id="@+id/scrollView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginStart="@dimen/dimen25"
-                android:layout_marginEnd="@dimen/dimen25"
-                android:layout_marginTop="@dimen/dimen15"
-                android:layout_marginBottom="@dimen/dimen15"
-                android:hint="@string/hint_write_here"
-                android:gravity="start"
-                android:inputType="textMultiLine"
-                android:scrollbars="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/img_done"
                 app:layout_constraintTop_toBottomOf="@+id/toolbar"
-                android:text="@{noteObj.noteContent}"
-                android:background="@null"/>
+                android:paddingStart="@dimen/dimen10"
+                android:paddingEnd="@dimen/dimen10"
+                android:layout_marginTop="@dimen/dimen15"
+                android:layout_marginBottom="@dimen/dimen15">
+
+            <EditText
+                    android:id="@+id/edt_note_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dimen15"
+                    android:layout_marginEnd="@dimen/dimen15"
+                    android:hint="@string/hint_write_here"
+                    android:gravity="start"
+                    android:inputType="textMultiLine"
+                    android:text="@{noteObj.noteContent}"
+                    android:lines="30"
+                    android:background="@null"/>
+
+        </ScrollView>
+
+
 
 
         <ImageButton
