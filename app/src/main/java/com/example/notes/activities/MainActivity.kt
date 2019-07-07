@@ -6,7 +6,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import com.example.notes.R
 import com.example.notes.adapters.NotesAdapter
 import com.example.notes.databinding.ActivityMainBinding
@@ -19,13 +18,14 @@ import android.content.DialogInterface
 import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.widget.EditText
+import com.example.notes.utils.AppUtils
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: NoteViewModel
     private lateinit var adapter: NotesAdapter
-    private var isEditMode = false
+
     private var newNoteName :String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,15 +109,16 @@ class MainActivity : AppCompatActivity() {
         alert.setTitle(null)
         alert.setView(alertLayout)
         alert.setCancelable(false)
-        alert.setNegativeButton("Cancel") { dialogInterface: DialogInterface, _: Int ->
+        alert.setNegativeButton(getString(R.string.label_cancel)) { dialogInterface: DialogInterface, _: Int ->
             dialogInterface.dismiss()
         }
 
 
-        alert.setPositiveButton("Done", null)
+        alert.setPositiveButton(getString(R.string.label_ok), null)
         val dialog = alert.create()
 
         dialog.setOnShowListener { dialogInterface ->
+            AppUtils.showSoftKeyboard(this, edtNoteName)
             val positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             positiveButton.setOnClickListener {
                 if (edtNoteName.text.toString().isNotEmpty()) {

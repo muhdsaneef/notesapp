@@ -11,12 +11,12 @@ import android.widget.Toast
 import com.example.notes.R
 import com.example.notes.databinding.ActivityNotesEditBinding
 import com.example.notes.models.Note
+import com.example.notes.utils.AppUtils
 import kotlinx.android.synthetic.main.activity_notes_edit.*
 import java.util.*
 
-class NotesEditActivity : AppCompatActivity() {
+class NotesEditActivity : BaseActivity() {
 
-    private var isEditMode = false
     private var note: Note? = null
     private lateinit var binding: ActivityNotesEditBinding
 
@@ -35,16 +35,24 @@ class NotesEditActivity : AppCompatActivity() {
         binding.imgDone.setOnClickListener {
             if (binding.edtNoteContent.text.toString().isNotEmpty()) {
                 //Update the note content
-                note?.setUpdatedContent(System.currentTimeMillis(), binding.edtNoteContent.text.toString())
-
-                sendResultBackToListingScreen()
+                checkIfContentIsUpdatedInEditMode(binding.edtNoteContent.text.toString())
             } else {
                 Toast.makeText(this,"Note content cannot be empty", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    private fun checkIfContentIsUpdatedInEditMode(noteContent: String) {
+        if (isEditMode && noteContent == note?.noteContent) {
+            finish()
+        } else {
+            note?.noteContent = noteContent
+            sendResultBackToListingScreen()
+        }
+    }
+
     private fun sendResultBackToListingScreen() {
+        //Check if content is changed in edit mode, then update the current note
         val resultIntent = Intent()
         resultIntent.putExtra(NOTE_ITEM, note)
         setResult(Activity.RESULT_OK, resultIntent)
@@ -71,15 +79,11 @@ class NotesEditActivity : AppCompatActivity() {
         if (isEditMode) {
             note = intent.getParcelableExtra(NOTE_ITEM)
             binding.noteObj = note
-            note?.let {
-                binding.edtNoteContent.post {
-                    binding.edtNoteContent.setSelection(it.noteContent.length)
-                }
-            }
         } else {
             val noteId = UUID.randomUUID().toString()
             val noteName = intent.getStringExtra(NEW_NOTE_NAME)
             note = Note(noteId, noteName, System.currentTimeMillis(), "")
+            AppUtils.showSoftKeyboard(this, binding.edtNoteContent)
         }
     }
 

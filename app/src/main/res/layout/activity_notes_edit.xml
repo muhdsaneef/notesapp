@@ -11,7 +11,9 @@
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-    android:background="@android:color/white">
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:background="@android:color/white">
 
         <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -28,33 +30,28 @@
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/titleTextSize"
                     android:layout_gravity="center"
-                    android:id="@+id/toolbar_title" />
+                    android:id="@+id/toolbar_title"/>
 
         </android.support.v7.widget.Toolbar>
 
-        <ScrollView
-                android:id="@+id/scrollView"
+
+        <EditText
+                android:id="@+id/edt_note_content"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginStart="@dimen/dimen25"
+                android:layout_marginEnd="@dimen/dimen25"
                 android:layout_marginTop="@dimen/dimen15"
                 android:layout_marginBottom="@dimen/dimen15"
-                android:paddingStart="@dimen/dimen10"
-                android:paddingEnd="@dimen/dimen10"
+                android:hint="@string/hint_write_here"
+                android:gravity="start"
+                android:inputType="textMultiLine"
+                android:scrollbars="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/img_done"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+                app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                android:text="@{noteObj.noteContent}"
+                android:background="@null"/>
 
-            <EditText
-                    android:id="@+id/edt_note_content"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dimen15"
-                    android:layout_marginEnd="@dimen/dimen15"
-                    android:hint="@string/hint_write_here"
-                    android:inputType="textMultiLine"
-                    android:text="@{noteObj.noteContent}"
-            android:background="@null"/>
-
-        </ScrollView>
 
         <ImageButton
                 android:id="@+id/img_done"
