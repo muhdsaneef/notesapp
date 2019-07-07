@@ -8,4 +8,5 @@
     <string name="label_enter_note_name">Note name</string>
     <string name="hint_enter_note_name">Enter note name..</string>
     <string name="message_please_enter_valid_name">Please enter valid name</string>
+    <string name="message_no_notes_created">No notes to display</string>
 </resources>

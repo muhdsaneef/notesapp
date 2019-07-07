@@ -50,6 +50,7 @@
                     android:layout_marginStart="@dimen/dimen15"
                     android:layout_marginEnd="@dimen/dimen15"
                     android:hint="@string/hint_write_here"
+                    android:inputType="textMultiLine"
                     android:text="@{noteObj.noteContent}"
             android:background="@null"/>
 

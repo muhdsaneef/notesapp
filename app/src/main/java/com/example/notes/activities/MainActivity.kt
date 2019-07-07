@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateNotes(listOfNotes: List<Note>?) {
+        binding.isNotesAvailable = listOfNotes != null && listOfNotes.isNotEmpty()
         listOfNotes?.let {
             notesList -> adapter.setNotes(notesList)
         }
